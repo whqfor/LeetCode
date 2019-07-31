@@ -1,10 +1,3 @@
-//
-//  0001Two Sum.swift
-//  LeetCode
-//
-//  Created by whqfor on 2019/7/30.
-//  Copyright © 2019 whqfor. All rights reserved.
-//
 /*
  给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
  
@@ -23,18 +16,21 @@
  著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 
-class TwoSum {
+class Solution {
     func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
         var dict = [Int: Int]()
-        
         for (i, num) in nums.enumerated() {
-            if let lastIndex = dict[target - num] {
-                return [lastIndex, i]
+            if let index = dict[target - num] {
+                return [index, i] // index在前
             }
-            
-            dict[num] = i
+            dict[num] = i; // 已经遍历过的使用字典保存
         }
-        
-        fatalError("No valid outputs")
+        fatalError("没有符合的参数");
     }
 }
+Solution().twoSum([1, 2, 5, 3, 9, 4], 9)
+
+/*
+ 执行用时 : 52 ms , 在所有 Swift 提交中击败了 87.74% 的用户
+ 内存消耗 : 21.2 MB , 在所有 Swift 提交中击败了 5.12% 的用户
+ */

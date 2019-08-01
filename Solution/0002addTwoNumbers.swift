@@ -27,8 +27,43 @@
  *     }
  * }
  */
+
 class Solution {
-    func addTwoNumbers(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
+    func addTwoNumbers(l1: ListNode?, l2: ListNode?) -> ListNode? {
         
+        var carry = 0
+        var sum = 0
+        var l1 = l1
+        var l2 = l2
+        var node = ListNode(0)
+        let result = node
+        
+        
+        while l1 != nil || l2 != nil || carry != 0 {
+            
+            if l1 != nil {
+                sum += l1!.val
+                l1 = l1!.next
+            }
+            if l2 != nil {
+                sum += l2!.val
+                l2 = l2!.next
+            }
+            
+            carry = sum / 10
+            sum = sum % 10
+            
+            node.next = ListNode(sum)
+            node = node.next!
+            
+            sum = carry
+        }
+        
+        return result.next
     }
 }
+
+/*
+ 执行用时 : 64 ms , 在所有 Swift 提交中击败了 93.17% 的用户
+ 内存消耗 : 20.6 MB , 在所有 Swift 提交中击败了 5.14% 的用户
+ *
